@@ -1,0 +1,335 @@
+@blue: #3f6fb6;
+@black: #000000;
+@white: #ffffff;
+@gloomy: #e6e6e6;
+
+
+@font-face {
+    font-family: "MyriadProBold";
+}
+
+.header,
+.title,
+label,
+.quality,
+.list span:first-of-type,
+.list span:last-of-type {
+    text-transform: uppercase;
+}
+
+.circle(title; @color) {
+    background-color: @color;
+    border-radius: 50%;
+}
+
+.circle-diameter(@diameter) {
+    width: @diameter;
+    height: @diameter;
+}
+
+.reset-indents() {
+    padding: 0;
+    margin: 0;
+}
+
+.rectangle(@width; @height; @color:none) {
+    width: @width;
+    height: @height;
+    background-color: @color;
+}
+
+body {
+    position: absolute;
+    display: flex;
+    flex-wrap: wrap;
+    .reset-indents();
+    min-width: 100px;
+    justify-content: space-between;
+}
+
+.clearfix::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.left-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    width: 33.4%;
+    padding: 5.5% 2.8% 2.2% 5.0%;
+}
+
+.right-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    width: 53%;
+    padding: 2.5% 2.7% 3.2% 1%;
+}
+
+.title {
+    font-size: 19.75pt;
+    font-weight: bold;
+    font-family: "MyriadProBold";
+    color: @blue;
+}
+
+p {
+    font-size: 16px;
+    margin-top: 10px;
+    line-height: 19px;
+}
+
+.name {
+    font-size: 50px;
+    color: #191919;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 17%;
+}
+
+
+.surname {
+    font-size: 65px;
+    font-family: "MyriadProBold";
+    line-height: 40px;
+}
+
+.profession {
+    font-size: 26px;
+    font-family: "MyriadProBold";
+    line-height: 60px;
+}
+
+.feedback-item label {
+    font-family: "MyriadProBold";
+    color: @blue;
+    font-size: 21px;
+}
+
+.feedback-item {
+    border-collapse: collapse;
+    margin-bottom: 7%;
+}
+
+.feedback-item td:first-of-type {
+    width: 130px;
+}
+
+
+.feedback-item input {
+    border: none;
+    font-size: 19px;
+}
+
+.feedback .title {
+    margin-bottom: 7%;
+}
+
+.skills {
+    text-align: center;
+    padding-bottom: 3%;
+}
+
+
+.skills .title {
+    margin-bottom: 4%;
+}
+
+.skills .quality {
+    font-size: 25px;
+    margin-bottom: 9px;
+}
+
+.skills .circle-indicators {
+    margin: 0 auto;
+    width: 90%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.skills .circle-indicators:last-of-type {
+    margin-bottom: 0px;
+}
+
+.quality,
+.list span {
+    font-size: 12.35pt;
+}
+
+
+.header .outer-wrapper {
+    display: table;
+    .circle-diameter(235px);
+    .circle(title; @white);
+    border:1px solid @black;
+    vertical-align: middle;
+    text-align: center;
+    padding: 12px;
+    margin: 0 auto;
+    margin-bottom: 6%;
+}
+
+
+.header .outer {
+    display: table-cell;
+    .circle(title; @blue);
+}
+
+.title {
+    display: flex;
+    align-items: center;
+    font-size: 40px;
+}
+
+.title .outer-wrapper {
+    display: table;
+    .circle-diameter(75px);
+    .circle(title; @white);
+    border:1px solid @blue;
+    vertical-align: middle;
+    text-align: center;
+    padding: 2px;
+}
+
+.indicators-container {
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+
+
+.feedback-replace {margin-top: 5%;}
+.software-replace {margin-top: 4%;}
+.experience-replace {margin-top: 2%;}
+
+
+.title .outer {
+    display: table-cell;
+    .circle(title; @blue);
+}
+
+.title .line {
+    .rectangle(100%; 5px; @blue);
+}
+
+.title td:last-of-type {
+    width: 100%;
+}
+
+.software .container .quality:first-of-type {
+    float: left;
+    width:44.5%;
+}
+
+.software .container .quality:last-of-type {
+    float: right;
+    width:44.5%;
+}
+
+.software .rect-outer {
+    .rectangle(100%; 23px; @gloomy);
+}
+
+.software .container:nth-of-type(1) .quality:first-of-type .rect-inerner {
+    .rectangle(90%; 23px; @blue);
+}
+
+.software .container:nth-of-type(2) .quality:last-of-type .rect-inerner {
+    .rectangle(60%; 23px; @blue);
+}
+
+.software .container:nth-of-type(2) .quality:first-of-type .rect-inerner {
+    .rectangle(73%; 23px; @blue);
+}
+
+.software .container:nth-of-type(1) .quality:last-of-type .rect-inerner {
+    .rectangle(83%; 23px; @blue);
+}
+
+.software .container:nth-of-type(3) .quality:first-of-type .rect-inerner {
+    .rectangle(55%; 23px; @blue);
+}
+
+.software .container:nth-of-type(3) .quality:last-of-type .rect-inerner {
+    .rectangle(90%; 23px; @blue);
+}
+
+.skills .circle-indicators .circle-insicator-item div {
+    .circle-diameter(18px);
+    .circle(title; @gloomy);
+    margin: 0 auto;
+}
+
+.software {padding-bottom: 3%;}
+
+.skills .circle-indicators .active div {
+    background-color: @blue;
+}
+
+li {
+    list-style-type: none;
+}
+
+li::before {
+    .circle-diameter(20px);
+    .circle(title; @black);
+    content: "";
+    position: absolute;
+    margin-left: -38px;
+    margin-top: 8px;
+}
+
+
+
+.education .title {
+    margin-bottom: 3%;
+}
+
+.list .list-item-title {
+    font-family: "MyriadProBold";
+    font-size: 25px;
+}
+
+.list .period,
+.list .list-item-subtitle{
+    font-size: 25px;
+}
+
+.list {
+    margin-left: 13px;
+}
+
+.experience .title {
+    margin-bottom: 5.5%;
+}
+
+.software .quality {
+    font-size: 25px;
+}
+
+.software .quality div:first-of-type{
+    margin-bottom: 15px;
+}
+
+.software .container {
+    margin-bottom: 20px;
+}
+
+.software .container:last-of-type {
+    margin-bottom: 0;
+}
+
+.software .title {
+    margin-bottom: 30px;
+}
+
+
+
+.education .list .list-item span:first-of-type {
+    color: @blue;
+}
