@@ -10,9 +10,16 @@ module.exports = {
                 loader: 'babel-loader',
                 exclude: /(node_modules|bower_components)/
             },
-            { test: /\.less$/, loader: "style-loader!css-loader!less-loader" }
+            { test: /\.less$/, loader: "style-loader!css-loader!less-loader" },
+            {
+                test: /\.html$/,
+                loader: 'html-loader'
+            },
+            {
+                test: /\.hbs$/,
+                loader: 'handlebars-loader'
+            }
         ]
     }
 
 };
-

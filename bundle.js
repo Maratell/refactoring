@@ -69,601 +69,117 @@
 
 
 __webpack_require__(1);
-document.write('Hello');
+__webpack_require__(3);
+__webpack_require__(5);
+__webpack_require__(7);
+__webpack_require__(9);
+__webpack_require__(11);
+__webpack_require__(13);
 
 /***/ }),
 /* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
-// style-loader: Adds some css to the DOM by adding a <style> tag
+var header = __webpack_require__(2);
+var app = document.querySelector('#header');
 
-// load the styles
-var content = __webpack_require__(2);
-if(typeof content === 'string') content = [[module.i, content, '']];
-// Prepare cssTransformation
-var transform;
-
-var options = {"hmr":true}
-options.transform = transform
-// add the styles to the DOM
-var update = __webpack_require__(4)(content, options);
-if(content.locals) module.exports = content.locals;
-// Hot Module Replacement
-if(false) {
-	// When the styles change, update the <style> tags
-	if(!content.locals) {
-		module.hot.accept("!!../node_modules/css-loader/index.js!../node_modules/less-loader/dist/cjs.js!./api.less", function() {
-			var newContent = require("!!../node_modules/css-loader/index.js!../node_modules/less-loader/dist/cjs.js!./api.less");
-			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-			update(newContent);
-		});
-	}
-	// When the module is disposed, remove the <style> tags
-	module.hot.dispose(function() { update(); });
-}
+app.innerHTML = header;
 
 /***/ }),
 /* 2 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-exports = module.exports = __webpack_require__(3)(undefined);
-// imports
-
-
-// module
-exports.push([module.i, "@font-face {\n  font-family: \"MyriadProBold\";\n}\n.header,\n.title,\nlabel,\n.quality,\n.list span:first-of-type,\n.list span:last-of-type {\n  text-transform: uppercase;\n}\nbody {\n  position: absolute;\n  display: flex;\n  flex-wrap: wrap;\n  padding: 0;\n  margin: 0;\n  min-width: 100px;\n  justify-content: space-between;\n}\n.clearfix::after {\n  content: \"\";\n  display: table;\n  clear: both;\n}\n.left-column {\n  display: flex;\n  flex-direction: column;\n  justify-content: flex-end;\n  width: 33.4%;\n  padding: 5.5% 2.8% 2.2% 5.0%;\n}\n.right-column {\n  display: flex;\n  flex-direction: column;\n  justify-content: flex-end;\n  width: 53%;\n  padding: 2.5% 2.7% 3.2% 1%;\n}\n.title {\n  font-size: 19.75pt;\n  font-weight: bold;\n  font-family: \"MyriadProBold\";\n  color: #3f6fb6;\n}\np {\n  font-size: 16px;\n  margin-top: 10px;\n  line-height: 19px;\n}\n.name {\n  font-size: 50px;\n  color: #191919;\n}\n.header {\n  text-align: center;\n  margin-bottom: 17%;\n}\n.surname {\n  font-size: 65px;\n  font-family: \"MyriadProBold\";\n  line-height: 40px;\n}\n.profession {\n  font-size: 26px;\n  font-family: \"MyriadProBold\";\n  line-height: 60px;\n}\n.feedback-item label {\n  font-family: \"MyriadProBold\";\n  color: #3f6fb6;\n  font-size: 21px;\n}\n.feedback-item {\n  border-collapse: collapse;\n  margin-bottom: 7%;\n}\n.feedback-item td:first-of-type {\n  width: 130px;\n}\n.feedback-item input {\n  border: none;\n  font-size: 19px;\n}\n.feedback .title {\n  margin-bottom: 7%;\n}\n.skills {\n  text-align: center;\n  padding-bottom: 3%;\n}\n.skills .title {\n  margin-bottom: 4%;\n}\n.skills .quality {\n  font-size: 25px;\n  margin-bottom: 9px;\n}\n.skills .circle-indicators {\n  margin: 0 auto;\n  width: 90%;\n  border-collapse: collapse;\n  margin-bottom: 20px;\n}\n.skills .circle-indicators:last-of-type {\n  margin-bottom: 0px;\n}\n.quality,\n.list span {\n  font-size: 12.35pt;\n}\n.header .outer-wrapper {\n  display: table;\n  width: 235px;\n  height: 235px;\n  background-color: #ffffff;\n  border-radius: 50%;\n  border: 1px solid #000000;\n  vertical-align: middle;\n  text-align: center;\n  padding: 12px;\n  margin: 0 auto;\n  margin-bottom: 6%;\n}\n.header .outer {\n  display: table-cell;\n  background-color: #3f6fb6;\n  border-radius: 50%;\n}\n.title {\n  display: flex;\n  align-items: center;\n  font-size: 40px;\n}\n.title .outer-wrapper {\n  display: table;\n  width: 75px;\n  height: 75px;\n  background-color: #ffffff;\n  border-radius: 50%;\n  border: 1px solid #3f6fb6;\n  vertical-align: middle;\n  text-align: center;\n  padding: 2px;\n}\n.indicators-container {\n  padding-left: 5%;\n  padding-right: 5%;\n}\n.feedback-replace {\n  margin-top: 5%;\n}\n.software-replace {\n  margin-top: 4%;\n}\n.experience-replace {\n  margin-top: 2%;\n}\n.title .outer {\n  display: table-cell;\n  background-color: #3f6fb6;\n  border-radius: 50%;\n}\n.title .line {\n  width: 100%;\n  height: 5px;\n  background-color: #3f6fb6;\n}\n.title td:last-of-type {\n  width: 100%;\n}\n.software .container .quality:first-of-type {\n  float: left;\n  width: 44.5%;\n}\n.software .container .quality:last-of-type {\n  float: right;\n  width: 44.5%;\n}\n.software .rect-outer {\n  width: 100%;\n  height: 23px;\n  background-color: #e6e6e6;\n}\n.software .container:nth-of-type(1) .quality:first-of-type .rect-inerner {\n  width: 90%;\n  height: 23px;\n  background-color: #3f6fb6;\n}\n.software .container:nth-of-type(2) .quality:last-of-type .rect-inerner {\n  width: 60%;\n  height: 23px;\n  background-color: #3f6fb6;\n}\n.software .container:nth-of-type(2) .quality:first-of-type .rect-inerner {\n  width: 73%;\n  height: 23px;\n  background-color: #3f6fb6;\n}\n.software .container:nth-of-type(1) .quality:last-of-type .rect-inerner {\n  width: 83%;\n  height: 23px;\n  background-color: #3f6fb6;\n}\n.software .container:nth-of-type(3) .quality:first-of-type .rect-inerner {\n  width: 55%;\n  height: 23px;\n  background-color: #3f6fb6;\n}\n.software .container:nth-of-type(3) .quality:last-of-type .rect-inerner {\n  width: 90%;\n  height: 23px;\n  background-color: #3f6fb6;\n}\n.skills .circle-indicators .circle-insicator-item div {\n  width: 18px;\n  height: 18px;\n  background-color: #e6e6e6;\n  border-radius: 50%;\n  margin: 0 auto;\n}\n.software {\n  padding-bottom: 3%;\n}\n.skills .circle-indicators .active div {\n  background-color: #3f6fb6;\n}\nli {\n  list-style-type: none;\n}\nli::before {\n  width: 20px;\n  height: 20px;\n  background-color: #000000;\n  border-radius: 50%;\n  content: \"\";\n  position: absolute;\n  margin-left: -38px;\n  margin-top: 8px;\n}\n.education .title {\n  margin-bottom: 3%;\n}\n.list .list-item-title {\n  font-family: \"MyriadProBold\";\n  font-size: 25px;\n}\n.list .period,\n.list .list-item-subtitle {\n  font-size: 25px;\n}\n.list {\n  margin-left: 13px;\n}\n.experience .title {\n  margin-bottom: 5.5%;\n}\n.software .quality {\n  font-size: 25px;\n}\n.software .quality div:first-of-type {\n  margin-bottom: 15px;\n}\n.software .container {\n  margin-bottom: 20px;\n}\n.software .container:last-of-type {\n  margin-bottom: 0;\n}\n.software .title {\n  margin-bottom: 30px;\n}\n.education .list .list-item span:first-of-type {\n  color: #3f6fb6;\n}\n", ""]);
-
-// exports
-
+module.exports = "<div class=\"header\">\r\n    <table class=\"outer-wrapper\">\r\n        <td class=\"outer icon\">\r\n        </td>\r\n    </table>\r\n\r\n    <span class=\"name\">name here</span><br>\r\n    <span class=\"surname\">surname</span><br>\r\n    <span class=\"profession\">graphic designer</span>\r\n</div>";
 
 /***/ }),
 /* 3 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-/*
-	MIT License http://www.opensource.org/licenses/mit-license.php
-	Author Tobias Koppers @sokra
-*/
-// css base code, injected by the css-loader
-module.exports = function(useSourceMap) {
-	var list = [];
+var summary = __webpack_require__(4);
+var app = document.querySelector('#summary');
 
-	// return the list of modules as css string
-	list.toString = function toString() {
-		return this.map(function (item) {
-			var content = cssWithMappingToString(item, useSourceMap);
-			if(item[2]) {
-				return "@media " + item[2] + "{" + content + "}";
-			} else {
-				return content;
-			}
-		}).join("");
-	};
-
-	// import a list of modules into the list
-	list.i = function(modules, mediaQuery) {
-		if(typeof modules === "string")
-			modules = [[null, modules, ""]];
-		var alreadyImportedModules = {};
-		for(var i = 0; i < this.length; i++) {
-			var id = this[i][0];
-			if(typeof id === "number")
-				alreadyImportedModules[id] = true;
-		}
-		for(i = 0; i < modules.length; i++) {
-			var item = modules[i];
-			// skip already imported module
-			// this implementation is not 100% perfect for weird media query combinations
-			//  when a module is imported multiple times with different media queries.
-			//  I hope this will never occur (Hey this way we have smaller bundles)
-			if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
-				if(mediaQuery && !item[2]) {
-					item[2] = mediaQuery;
-				} else if(mediaQuery) {
-					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
-				}
-				list.push(item);
-			}
-		}
-	};
-	return list;
-};
-
-function cssWithMappingToString(item, useSourceMap) {
-	var content = item[1] || '';
-	var cssMapping = item[3];
-	if (!cssMapping) {
-		return content;
-	}
-
-	if (useSourceMap && typeof btoa === 'function') {
-		var sourceMapping = toComment(cssMapping);
-		var sourceURLs = cssMapping.sources.map(function (source) {
-			return '/*# sourceURL=' + cssMapping.sourceRoot + source + ' */'
-		});
-
-		return [content].concat(sourceURLs).concat([sourceMapping]).join('\n');
-	}
-
-	return [content].join('\n');
-}
-
-// Adapted from convert-source-map (MIT)
-function toComment(sourceMap) {
-	// eslint-disable-next-line no-undef
-	var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap))));
-	var data = 'sourceMappingURL=data:application/json;charset=utf-8;base64,' + base64;
-
-	return '/*# ' + data + ' */';
-}
-
+app.innerHTML = summary;
 
 /***/ }),
 /* 4 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-/*
-	MIT License http://www.opensource.org/licenses/mit-license.php
-	Author Tobias Koppers @sokra
-*/
-
-var stylesInDom = {};
-
-var	memoize = function (fn) {
-	var memo;
-
-	return function () {
-		if (typeof memo === "undefined") memo = fn.apply(this, arguments);
-		return memo;
-	};
-};
-
-var isOldIE = memoize(function () {
-	// Test for IE <= 9 as proposed by Browserhacks
-	// @see http://browserhacks.com/#hack-e71d8692f65334173fee715c222cb805
-	// Tests for existence of standard globals is to allow style-loader
-	// to operate correctly into non-standard environments
-	// @see https://github.com/webpack-contrib/style-loader/issues/177
-	return window && document && document.all && !window.atob;
-});
-
-var getElement = (function (fn) {
-	var memo = {};
-
-	return function(selector) {
-		if (typeof memo[selector] === "undefined") {
-			var styleTarget = fn.call(this, selector);
-			// Special case to return head of iframe instead of iframe itself
-			if (styleTarget instanceof window.HTMLIFrameElement) {
-				try {
-					// This will throw an exception if access to iframe is blocked
-					// due to cross-origin restrictions
-					styleTarget = styleTarget.contentDocument.head;
-				} catch(e) {
-					styleTarget = null;
-				}
-			}
-			memo[selector] = styleTarget;
-		}
-		return memo[selector]
-	};
-})(function (target) {
-	return document.querySelector(target)
-});
-
-var singleton = null;
-var	singletonCounter = 0;
-var	stylesInsertedAtTop = [];
-
-var	fixUrls = __webpack_require__(5);
-
-module.exports = function(list, options) {
-	if (typeof DEBUG !== "undefined" && DEBUG) {
-		if (typeof document !== "object") throw new Error("The style-loader cannot be used in a non-browser environment");
-	}
-
-	options = options || {};
-
-	options.attrs = typeof options.attrs === "object" ? options.attrs : {};
-
-	// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
-	// tags it will allow on a page
-	if (!options.singleton) options.singleton = isOldIE();
-
-	// By default, add <style> tags to the <head> element
-	if (!options.insertInto) options.insertInto = "head";
-
-	// By default, add <style> tags to the bottom of the target
-	if (!options.insertAt) options.insertAt = "bottom";
-
-	var styles = listToStyles(list, options);
-
-	addStylesToDom(styles, options);
-
-	return function update (newList) {
-		var mayRemove = [];
-
-		for (var i = 0; i < styles.length; i++) {
-			var item = styles[i];
-			var domStyle = stylesInDom[item.id];
-
-			domStyle.refs--;
-			mayRemove.push(domStyle);
-		}
-
-		if(newList) {
-			var newStyles = listToStyles(newList, options);
-			addStylesToDom(newStyles, options);
-		}
-
-		for (var i = 0; i < mayRemove.length; i++) {
-			var domStyle = mayRemove[i];
-
-			if(domStyle.refs === 0) {
-				for (var j = 0; j < domStyle.parts.length; j++) domStyle.parts[j]();
-
-				delete stylesInDom[domStyle.id];
-			}
-		}
-	};
-};
-
-function addStylesToDom (styles, options) {
-	for (var i = 0; i < styles.length; i++) {
-		var item = styles[i];
-		var domStyle = stylesInDom[item.id];
-
-		if(domStyle) {
-			domStyle.refs++;
-
-			for(var j = 0; j < domStyle.parts.length; j++) {
-				domStyle.parts[j](item.parts[j]);
-			}
-
-			for(; j < item.parts.length; j++) {
-				domStyle.parts.push(addStyle(item.parts[j], options));
-			}
-		} else {
-			var parts = [];
-
-			for(var j = 0; j < item.parts.length; j++) {
-				parts.push(addStyle(item.parts[j], options));
-			}
-
-			stylesInDom[item.id] = {id: item.id, refs: 1, parts: parts};
-		}
-	}
-}
-
-function listToStyles (list, options) {
-	var styles = [];
-	var newStyles = {};
-
-	for (var i = 0; i < list.length; i++) {
-		var item = list[i];
-		var id = options.base ? item[0] + options.base : item[0];
-		var css = item[1];
-		var media = item[2];
-		var sourceMap = item[3];
-		var part = {css: css, media: media, sourceMap: sourceMap};
-
-		if(!newStyles[id]) styles.push(newStyles[id] = {id: id, parts: [part]});
-		else newStyles[id].parts.push(part);
-	}
-
-	return styles;
-}
-
-function insertStyleElement (options, style) {
-	var target = getElement(options.insertInto)
-
-	if (!target) {
-		throw new Error("Couldn't find a style target. This probably means that the value for the 'insertInto' parameter is invalid.");
-	}
-
-	var lastStyleElementInsertedAtTop = stylesInsertedAtTop[stylesInsertedAtTop.length - 1];
-
-	if (options.insertAt === "top") {
-		if (!lastStyleElementInsertedAtTop) {
-			target.insertBefore(style, target.firstChild);
-		} else if (lastStyleElementInsertedAtTop.nextSibling) {
-			target.insertBefore(style, lastStyleElementInsertedAtTop.nextSibling);
-		} else {
-			target.appendChild(style);
-		}
-		stylesInsertedAtTop.push(style);
-	} else if (options.insertAt === "bottom") {
-		target.appendChild(style);
-	} else if (typeof options.insertAt === "object" && options.insertAt.before) {
-		var nextSibling = getElement(options.insertInto + " " + options.insertAt.before);
-		target.insertBefore(style, nextSibling);
-	} else {
-		throw new Error("[Style Loader]\n\n Invalid value for parameter 'insertAt' ('options.insertAt') found.\n Must be 'top', 'bottom', or Object.\n (https://github.com/webpack-contrib/style-loader#insertat)\n");
-	}
-}
-
-function removeStyleElement (style) {
-	if (style.parentNode === null) return false;
-	style.parentNode.removeChild(style);
-
-	var idx = stylesInsertedAtTop.indexOf(style);
-	if(idx >= 0) {
-		stylesInsertedAtTop.splice(idx, 1);
-	}
-}
-
-function createStyleElement (options) {
-	var style = document.createElement("style");
-
-	options.attrs.type = "text/css";
-
-	addAttrs(style, options.attrs);
-	insertStyleElement(options, style);
-
-	return style;
-}
-
-function createLinkElement (options) {
-	var link = document.createElement("link");
-
-	options.attrs.type = "text/css";
-	options.attrs.rel = "stylesheet";
-
-	addAttrs(link, options.attrs);
-	insertStyleElement(options, link);
-
-	return link;
-}
-
-function addAttrs (el, attrs) {
-	Object.keys(attrs).forEach(function (key) {
-		el.setAttribute(key, attrs[key]);
-	});
-}
-
-function addStyle (obj, options) {
-	var style, update, remove, result;
-
-	// If a transform function was defined, run it on the css
-	if (options.transform && obj.css) {
-	    result = options.transform(obj.css);
-
-	    if (result) {
-	    	// If transform returns a value, use that instead of the original css.
-	    	// This allows running runtime transformations on the css.
-	    	obj.css = result;
-	    } else {
-	    	// If the transform function returns a falsy value, don't add this css.
-	    	// This allows conditional loading of css
-	    	return function() {
-	    		// noop
-	    	};
-	    }
-	}
-
-	if (options.singleton) {
-		var styleIndex = singletonCounter++;
-
-		style = singleton || (singleton = createStyleElement(options));
-
-		update = applyToSingletonTag.bind(null, style, styleIndex, false);
-		remove = applyToSingletonTag.bind(null, style, styleIndex, true);
-
-	} else if (
-		obj.sourceMap &&
-		typeof URL === "function" &&
-		typeof URL.createObjectURL === "function" &&
-		typeof URL.revokeObjectURL === "function" &&
-		typeof Blob === "function" &&
-		typeof btoa === "function"
-	) {
-		style = createLinkElement(options);
-		update = updateLink.bind(null, style, options);
-		remove = function () {
-			removeStyleElement(style);
-
-			if(style.href) URL.revokeObjectURL(style.href);
-		};
-	} else {
-		style = createStyleElement(options);
-		update = applyToTag.bind(null, style);
-		remove = function () {
-			removeStyleElement(style);
-		};
-	}
-
-	update(obj);
-
-	return function updateStyle (newObj) {
-		if (newObj) {
-			if (
-				newObj.css === obj.css &&
-				newObj.media === obj.media &&
-				newObj.sourceMap === obj.sourceMap
-			) {
-				return;
-			}
-
-			update(obj = newObj);
-		} else {
-			remove();
-		}
-	};
-}
-
-var replaceText = (function () {
-	var textStore = [];
-
-	return function (index, replacement) {
-		textStore[index] = replacement;
-
-		return textStore.filter(Boolean).join('\n');
-	};
-})();
-
-function applyToSingletonTag (style, index, remove, obj) {
-	var css = remove ? "" : obj.css;
-
-	if (style.styleSheet) {
-		style.styleSheet.cssText = replaceText(index, css);
-	} else {
-		var cssNode = document.createTextNode(css);
-		var childNodes = style.childNodes;
-
-		if (childNodes[index]) style.removeChild(childNodes[index]);
-
-		if (childNodes.length) {
-			style.insertBefore(cssNode, childNodes[index]);
-		} else {
-			style.appendChild(cssNode);
-		}
-	}
-}
-
-function applyToTag (style, obj) {
-	var css = obj.css;
-	var media = obj.media;
-
-	if(media) {
-		style.setAttribute("media", media)
-	}
-
-	if(style.styleSheet) {
-		style.styleSheet.cssText = css;
-	} else {
-		while(style.firstChild) {
-			style.removeChild(style.firstChild);
-		}
-
-		style.appendChild(document.createTextNode(css));
-	}
-}
-
-function updateLink (link, options, obj) {
-	var css = obj.css;
-	var sourceMap = obj.sourceMap;
-
-	/*
-		If convertToAbsoluteUrls isn't defined, but sourcemaps are enabled
-		and there is no publicPath defined then lets turn convertToAbsoluteUrls
-		on by default.  Otherwise default to the convertToAbsoluteUrls option
-		directly
-	*/
-	var autoFixUrls = options.convertToAbsoluteUrls === undefined && sourceMap;
-
-	if (options.convertToAbsoluteUrls || autoFixUrls) {
-		css = fixUrls(css);
-	}
-
-	if (sourceMap) {
-		// http://stackoverflow.com/a/26603875
-		css += "\n/*# sourceMappingURL=data:application/json;base64," + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + " */";
-	}
-
-	var blob = new Blob([css], { type: "text/css" });
-
-	var oldSrc = link.href;
-
-	link.href = URL.createObjectURL(blob);
-
-	if(oldSrc) URL.revokeObjectURL(oldSrc);
-}
-
+module.exports = "<div class=\"summary item\">\r\n    <table class=\"title\">\r\n        <td>\r\n            <table class=\"outer-wrapper\">\r\n                <td class=\"outer icon\">\r\n\r\n                </td>\r\n            </table>\r\n        </td>\r\n        <td>\r\n            <div class=\"profile\">profile</div>\r\n        </td>\r\n        <td>\r\n            <div class=\"line\"></div>\r\n        </td>\r\n    </table>\r\n    <p>\r\n        Lorem ipsum dolor sit amet, consectetuer adipiscing elit.\r\n        Aenean commodo ligula eget dolor. Aenean massa. Cum socils\r\n        natoque penatibus et magnis dis parturient montes, nascetur\r\n        ridiculus mus. Donec quam felis, ultricies, pellentesque eu,\r\n        pretium quis, sem. Nulla consequat massa quis enim. Donec\r\n        pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim\r\n        justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam\r\n        dictum felis eu <b>pede mollis pretium. Integer tincidunt. Cras\r\n        dapibus. Vivamus elementum semper nisi. Aenean\r\n        vulputate eleifend tellus. Aenean leo ligula, porttitor eu,\r\n        consequat vitae, eleifend ac, enim. Aliquam lorem ante,\r\n        dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra\r\n        nulla ut metus varius laoreet. Quisque rutrum.</b>\r\n    </p>\r\n</div>";
 
 /***/ }),
 /* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var feedback = __webpack_require__(6);
+var app = document.querySelector('#feedback');
+
+app.innerHTML = feedback;
+
+/***/ }),
+/* 6 */
 /***/ (function(module, exports) {
 
+module.exports = "<div class=\"feedback item feedback-replace\">\r\n    <table class=\"title\">\r\n        <td>\r\n            <table class=\"outer-wrapper\">\r\n                <td class=\"outer icon\">\r\n                </td>\r\n            </table>\r\n        </td>\r\n        <td>\r\n            <div class=\"contact\">contact</div>\r\n        </td>\r\n        <td>\r\n            <div class=\"line\"></div>\r\n        </td>\r\n    </table>\r\n    <table class=\"feedback-item address\">\r\n        <td class=\"lbl\">\r\n            <label for=\"address\">address</label>\r\n        </td>\r\n        <td class=\"inp\">\r\n            <input type=\"text\" name=\"address\" id=\"address\" value=\"Main Street, City.\">\r\n        </td>\r\n    </table>\r\n\r\n    <table class=\"feedback-item email\">\r\n        <td>\r\n            <label for=\"email\">e-mail</label>\r\n        </td>\r\n        <td>\r\n            <input type=\"email\" name=\"email\" id=\"email\" value=\"contact@domain.com\">\r\n        </td>\r\n    </table>\r\n\r\n    <table class=\"feedback-item phone\">\r\n        <td>\r\n            <label for=\"phone\">phone</label>\r\n        </td>\r\n        <td>\r\n            <input type=\"tel\" name=\"phone\" id=\"phone\" value=\"555-555-555\">\r\n        </td>\r\n    </table>\r\n\r\n    <table class=\"feedback-item url\">\r\n        <td>\r\n            <label for=\"url\">website</label>\r\n        </td>\r\n        <td>\r\n            <input type=\"url\" name=\"url\" id=\"url\" value=\"www.yourweb.com\">\r\n        </td>\r\n    </table>\r\n</div>";
 
-/**
- * When source maps are enabled, `style-loader` uses a link element with a data-uri to
- * embed the css on the page. This breaks all relative urls because now they are relative to a
- * bundle instead of the current page.
- *
- * One solution is to only use full urls, but that may be impossible.
- *
- * Instead, this function "fixes" the relative urls to be absolute according to the current page location.
- *
- * A rudimentary test suite is located at `test/fixUrls.js` and can be run via the `npm test` command.
- *
- */
+/***/ }),
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
 
-module.exports = function (css) {
-  // get current location
-  var location = typeof window !== "undefined" && window.location;
+var skills = __webpack_require__(8);
+var app = document.querySelector('#skills');
 
-  if (!location) {
-    throw new Error("fixUrls requires window.location");
-  }
+app.innerHTML = skills;
 
-	// blank or null?
-	if (!css || typeof css !== "string") {
-	  return css;
-  }
+/***/ }),
+/* 8 */
+/***/ (function(module, exports) {
 
-  var baseUrl = location.protocol + "//" + location.host;
-  var currentDir = baseUrl + location.pathname.replace(/\/[^\/]*$/, "/");
+module.exports = "<div class=\"skills item skills-replace\">\r\n    <table class=\"title\">\r\n        <td>\r\n            <table class=\"outer-wrapper\">\r\n                <td class=\"outer icon\">\r\n                </td>\r\n            </table>\r\n        </td>\r\n        <td>\r\n            <div class=\"skills\">skills</div>\r\n        </td>\r\n        <td>\r\n            <div class=\"line\"></div>\r\n        </td>\r\n    </table>\r\n\r\n    <div class=\"creative\">\r\n        <div class=\"quality\">creative</div>\r\n    </div>\r\n    <div class=\"indicators-container\">\r\n        <table class=\"circle-indicators\">\r\n            <td class=\"circle-insicator-item active\"><div></div></td>\r\n            <td class=\"circle-insicator-item active\"><div></div></td>\r\n            <td class=\"circle-insicator-item active\"><div></div></td>\r\n            <td class=\"circle-insicator-item active\"><div></div></td>\r\n            <td class=\"circle-insicator-item active\"><div></div></td>\r\n            <td class=\"circle-insicator-item active\"><div></div></td>\r\n            <td class=\"circle-insicator-item active\"><div></div></td>\r\n            <td class=\"circle-insicator-item active\"><div></div></td>\r\n            <td class=\"circle-insicator-item active\"><div></div></td>\r\n            <td class=\"circle-insicator-item\"><div></div></td>\r\n            <td class=\"circle-insicator-item\"><div></div></td>\r\n            <td class=\"circle-insicator-item\"><div></div></td>\r\n        </table>\r\n\r\n        <div class=\"teamwork\">\r\n            <div class=\"quality\">teamwork</div>\r\n        </div>\r\n\r\n        <table class=\"circle-indicators\">\r\n            <td class=\"circle-insicator-item active\"><div></div></td>\r\n            <td class=\"circle-insicator-item active\"><div></div></td>\r\n            <td class=\"circle-insicator-item active\"><div></div></td>\r\n            <td class=\"circle-insicator-item active\"><div></div></td>\r\n            <td class=\"circle-insicator-item active\"><div></div></td>\r\n            <td class=\"circle-insicator-item active\"><div></div></td>\r\n            <td class=\"circle-insicator-item active\"><div></div></td>\r\n            <td class=\"circle-insicator-item active\"><div></div></td>\r\n            <td class=\"circle-insicator-item active\"><div></div></td>\r\n            <td class=\"circle-insicator-item active\"><div></div></td>\r\n            <td class=\"circle-insicator-item active\"><div></div></td>\r\n            <td class=\"circle-insicator-item\"><div></div></td>\r\n        </table>\r\n\r\n        <div class=\"innovate\">\r\n            <div class=\"quality\">innovate</div>\r\n        </div>\r\n\r\n        <table class=\"circle-indicators\">\r\n            <td class=\"circle-insicator-item active\"><div></div></td>\r\n            <td class=\"circle-insicator-item active\"><div></div></td>\r\n            <td class=\"circle-insicator-item active\"><div></div></td>\r\n            <td class=\"circle-insicator-item active\"><div></div></td>\r\n            <td class=\"circle-insicator-item active\"><div></div></td>\r\n            <td class=\"circle-insicator-item active\"><div></div></td>\r\n            <td class=\"circle-insicator-item\"><div></div></td>\r\n            <td class=\"circle-insicator-item\"><div></div></td>\r\n            <td class=\"circle-insicator-item\"><div></div></td>\r\n            <td class=\"circle-insicator-item\"><div></div></td>\r\n            <td class=\"circle-insicator-item\"><div></div></td>\r\n            <td class=\"circle-insicator-item\"><div></div></td>\r\n        </table>\r\n\r\n        <div class=\"communication\">\r\n            <div class=\"quality\">communication</div>\r\n        </div>\r\n\r\n        <table class=\"circle-indicators\">\r\n            <td class=\"circle-insicator-item active\"><div></div></td>\r\n            <td class=\"circle-insicator-item active\"><div></div></td>\r\n            <td class=\"circle-insicator-item active\"><div></div></td>\r\n            <td class=\"circle-insicator-item active\"><div></div></td>\r\n            <td class=\"circle-insicator-item active\"><div></div></td>\r\n            <td class=\"circle-insicator-item active\"><div></div></td>\r\n            <td class=\"circle-insicator-item active\"><div></div></td>\r\n            <td class=\"circle-insicator-item active\"><div></div></td>\r\n            <td class=\"circle-insicator-item active\"><div></div></td>\r\n            <td class=\"circle-insicator-item active\"><div></div></td>\r\n            <td class=\"circle-insicator-item active\"><div></div></td>\r\n            <td class=\"circle-insicator-item\"><div></div></td>\r\n        </table>\r\n    </div>\r\n\r\n</div>";
 
-	// convert each url(...)
-	/*
-	This regular expression is just a way to recursively match brackets within
-	a string.
+/***/ }),
+/* 9 */
+/***/ (function(module, exports, __webpack_require__) {
 
-	 /url\s*\(  = Match on the word "url" with any whitespace after it and then a parens
-	   (  = Start a capturing group
-	     (?:  = Start a non-capturing group
-	         [^)(]  = Match anything that isn't a parentheses
-	         |  = OR
-	         \(  = Match a start parentheses
-	             (?:  = Start another non-capturing groups
-	                 [^)(]+  = Match anything that isn't a parentheses
-	                 |  = OR
-	                 \(  = Match a start parentheses
-	                     [^)(]*  = Match anything that isn't a parentheses
-	                 \)  = Match a end parentheses
-	             )  = End Group
-              *\) = Match anything and then a close parens
-          )  = Close non-capturing group
-          *  = Match anything
-       )  = Close capturing group
-	 \)  = Match a close parens
+var education = __webpack_require__(10);
+var app = document.querySelector('#education');
 
-	 /gi  = Get all matches, not the first.  Be case insensitive.
-	 */
-	var fixedCss = css.replace(/url\s*\(((?:[^)(]|\((?:[^)(]+|\([^)(]*\))*\))*)\)/gi, function(fullMatch, origUrl) {
-		// strip quotes (if they exist)
-		var unquotedOrigUrl = origUrl
-			.trim()
-			.replace(/^"(.*)"$/, function(o, $1){ return $1; })
-			.replace(/^'(.*)'$/, function(o, $1){ return $1; });
+app.innerHTML = education;
 
-		// already a full url? no change
-		if (/^(#|data:|http:\/\/|https:\/\/|file:\/\/\/)/i.test(unquotedOrigUrl)) {
-		  return fullMatch;
-		}
+/***/ }),
+/* 10 */
+/***/ (function(module, exports) {
 
-		// convert the url to a full url
-		var newUrl;
+module.exports = "<div class=\"education item education-replace\">\r\n    <table class=\"title\">\r\n        <td>\r\n            <table class=\"outer-wrapper\">\r\n                <td class=\"outer icon\">\r\n                </td>\r\n            </table>\r\n        </td>\r\n        <td>\r\n            <div class=\"education\">education</div>\r\n        </td>\r\n        <td>\r\n            <div class=\"line\"></div>\r\n        </td>\r\n    </table>\r\n    <ul class=\"list\">\r\n        <li class=\"list-item\">\r\n            <span class=\"list-item-title list-education-item-title\">master degree</span>\r\n            <span class=\"period\">//Feb 2011 - jun 2014</span><br>\r\n            <span class=\"list-item-subtitle\">university name</span>\r\n            <p>\r\n                Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum socils natoque penatibus et magnis dis parturient montes, nascetur\r\n                ridiculus mus. Donec quam felis, ultricies, pellentesque.\r\n            </p>\r\n        </li>\r\n\r\n        <li class=\"list-item\">\r\n            <span class=\"list-item-title list-education-item-title\">master degree</span>\r\n            <span class=\"period\">//Feb 2011 - jun 2014</span><br>\r\n            <span class=\"list-item-subtitle\">university name</span>\r\n            <p>\r\n                Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum socils natoque penatibus et magnis dis parturient montes, nascetur\r\n                ridiculus mus. Donec quam felis, ultricies, pellentesque.\r\n            </p>\r\n        </li>\r\n\r\n        <li class=\"list-item\">\r\n            <span class=\"list-item-title list-education-item-title\">master degree</span>\r\n            <span class=\"period\">//Feb 2011 - jun 2014</span><br>\r\n            <span class=\"list-item-subtitle\">university name</span>\r\n            <p>\r\n                Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum socils natoque penatibus et magnis dis parturient montes, nascetur\r\n                ridiculus mus. Donec quam felis, ultricies, pellentesque.\r\n            </p>\r\n        </li>\r\n\r\n        <li class=\"list-item\">\r\n            <span class=\"list-item-title list-education-item-title\">master degree</span>\r\n            <span class=\"period\">//Feb 2011 - jun 2014</span><br>\r\n            <span class=\"list-item-subtitle\">university name</span>\r\n            <p>\r\n                Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum socils natoque penatibus et magnis dis parturient montes, nascetur\r\n                ridiculus mus. Donec quam felis, ultricies, pellentesque.\r\n            </p>\r\n        </li>\r\n    </ul>\r\n</div>";
 
-		if (unquotedOrigUrl.indexOf("//") === 0) {
-		  	//TODO: should we add protocol?
-			newUrl = unquotedOrigUrl;
-		} else if (unquotedOrigUrl.indexOf("/") === 0) {
-			// path should be relative to the base url
-			newUrl = baseUrl + unquotedOrigUrl; // already starts with '/'
-		} else {
-			// path should be relative to current directory
-			newUrl = currentDir + unquotedOrigUrl.replace(/^\.\//, ""); // Strip leading './'
-		}
+/***/ }),
+/* 11 */
+/***/ (function(module, exports, __webpack_require__) {
 
-		// send back the fixed url(...)
-		return "url(" + JSON.stringify(newUrl) + ")";
-	});
+var experience = __webpack_require__(12);
+var app = document.querySelector('#experience');
 
-	// send back the fixed css
-	return fixedCss;
-};
+app.innerHTML = experience;
 
+/***/ }),
+/* 12 */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"experience item  experience-replace\">\r\n    <table class=\"title\">\r\n        <td>\r\n            <table class=\"outer-wrapper\">\r\n                <td class=\"outer icon\">\r\n                </td>\r\n            </table>\r\n        </td>\r\n        <td>\r\n            <div class=\"experience\">experience</div>\r\n        </td>\r\n        <td>\r\n            <div class=\"line\"></div>\r\n        </td>\r\n    </table>\r\n    <ul class=\"list\">\r\n        <li class=\"list-item\">\r\n            <span class=\"list-item-title list-experience-item-title\">company name</span>\r\n            <span class=\"period\">//Feb 2011 - jun 2014</span><br>\r\n            <span class=\"list-item-subtitle\">your job here</span>\r\n            <p>\r\n                Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum socils natoque penatibus et magnis dis parturient montes, nascetur\r\n                ridiculus mus. Donec quam felis, ultricies, pellentesque.\r\n            </p>\r\n        </li>\r\n\r\n        <li class=\"list-item\">\r\n            <span class=\"list-item-title list-experience-item-title\">company name</span>\r\n            <span class=\"period\">//Feb 2011 - jun 2014</span><br>\r\n            <span class=\"list-item-subtitle\">your job here</span>\r\n            <p>\r\n                Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum socils natoque penatibus et magnis dis parturient montes, nascetur\r\n                ridiculus mus. Donec quam felis, ultricies, pellentesque.\r\n            </p>\r\n        </li>\r\n\r\n        <li class=\"list-item\">\r\n            <span class=\"list-item-title list-experience-item-title\">company name</span>\r\n            <span class=\"period\">//Feb 2011 - jun 2014</span><br>\r\n            <span class=\"list-item-subtitle\">your job here</span>\r\n            <p>\r\n                Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum socils natoque penatibus et magnis dis parturient montes, nascetur\r\n                ridiculus mus. Donec quam felis, ultricies, pellentesque.\r\n            </p>\r\n        </li>\r\n    </ul>\r\n</div>";
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var software = __webpack_require__(14);
+var app = document.querySelector('#software');
+
+app.innerHTML = software;
+
+/***/ }),
+/* 14 */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"software item software-replace\">\r\n    <table class=\"title\">\r\n        <td>\r\n            <table class=\"outer-wrapper\">\r\n                <td class=\"outer icon\">\r\n                </td>\r\n            </table>\r\n        </td>\r\n        <td>\r\n            <div class=\"software\">software</div>\r\n        </td>\r\n        <td>\r\n            <div class=\"line\"></div>\r\n        </td>\r\n    </table>\r\n    <div class=\"container clearfix\">\r\n        <div class=\"quality\">\r\n            <div>photoshop</div>\r\n            <div class=\"rect-outer\">\r\n                <div class=\"rect-inerner\">\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"quality\">\r\n            <div>dramweaver</div>\r\n            <div class=\"rect-outer\">\r\n                <div class=\"rect-inerner\">\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n    <div class=\"container clearfix\">\r\n        <div class=\"quality\">\r\n            <div>illustrator</div>\r\n            <div class=\"rect-outer\">\r\n                <div class=\"rect-inerner\">\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"quality\">\r\n            <div>aftereffects</div>\r\n            <div class=\"rect-outer\">\r\n                <div class=\"rect-inerner\">\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n    <div class=\"container clearfix\">\r\n        <div class=\"quality\">\r\n            <div>indezign</div>\r\n            <div class=\"rect-outer\">\r\n                <div class=\"rect-inerner\">\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"quality\">\r\n            <div>html&css3</div>\r\n            <div class=\"rect-outer\">\r\n                <div class=\"rect-inerner\">\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>";
 
 /***/ })
 /******/ ]);
