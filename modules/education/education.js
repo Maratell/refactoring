@@ -1,4 +1,5 @@
-var education = require('./education.html');
-var app = document.querySelector('#education');
+import education_tmp from './education.hbs';
 
-app.innerHTML = education;
+
+const education = document.querySelector('#education');
+education.insertAdjacentHTML('beforeend', education_tmp({'name':'education'}));

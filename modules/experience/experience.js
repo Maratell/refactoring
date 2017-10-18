@@ -1,4 +1,5 @@
-var experience = require('./experience.html');
-var app = document.querySelector('#experience');
+import experience_tmp from './experience.hbs';
 
-app.innerHTML = experience;
+
+const experience = document.querySelector('#education');
+experience.insertAdjacentHTML('beforeend', experience_tmp({'name':'experience'}));

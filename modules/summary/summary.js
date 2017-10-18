@@ -1,4 +1,5 @@
-var summary = require('./summary.html');
-var app = document.querySelector('#summary');
+import summary_tmp from './summary.hbs';
 
-app.innerHTML = summary;
+
+const summary = document.querySelector('#summary');
+summary.insertAdjacentHTML('beforeend', summary_tmp({'name':'profile'}));

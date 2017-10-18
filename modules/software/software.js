@@ -1,4 +1,5 @@
-var software = require('./software.html');
-var app = document.querySelector('#software');
+import software_tmp from './software.hbs';
 
-app.innerHTML = software;
+
+const software = document.querySelector('#software');
+software.insertAdjacentHTML('beforeend', software_tmp({'name':'software'}));

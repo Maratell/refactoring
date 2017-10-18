@@ -1,4 +1,9 @@
-var header = require('./header.html');
-var app = document.querySelector('#header');
+import header_tmp from './header.hbs';
 
-app.innerHTML = header;
+
+const header = document.querySelector('#header');
+header.insertAdjacentHTML('beforeend', header_tmp({
+    'name' : 'name here',
+    'surname':'surname',
+    'profession' : 'graphic designer'
+}));

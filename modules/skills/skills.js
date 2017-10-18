@@ -1,4 +1,5 @@
-var skills = require('./skills.html');
-var app = document.querySelector('#skills');
+import skills_tmp from './skills.hbs';
 
-app.innerHTML = skills;
+
+const skills = document.querySelector('#skills');
+skills.insertAdjacentHTML('beforeend', skills_tmp({'name':'skills'}));

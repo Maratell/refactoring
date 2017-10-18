@@ -1,4 +1,5 @@
-var feedback = require('./feedback.html');
-var app = document.querySelector('#feedback');
+import feedback_tmp from './feedback.hbs';
 
-app.innerHTML = feedback;
+
+const feedback = document.querySelector('#feedback');
+feedback.insertAdjacentHTML('beforeend', feedback_tmp({'name':'contact'}));
