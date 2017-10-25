@@ -388,6 +388,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modules_skills_skills_js__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modules_software_software_js__ = __webpack_require__(31);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modules_summary_summary_js__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__js_world_js__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__js_NeighborCounter_js__ = __webpack_require__(37);
 
 
 
@@ -395,6 +397,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
+
+
+
+
+var wr = new __WEBPACK_IMPORTED_MODULE_7__js_world_js__["a" /* World */]();
+wr.setField(10, 10);
+wr.setInitPopulation();
+
+var counter = new __WEBPACK_IMPORTED_MODULE_8__js_NeighborCounter_js__["a" /* NeighborCounter */](wr.getField());
+counter.count(3, 4);
 
 /***/ }),
 /* 5 */
@@ -1522,6 +1534,89 @@ module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[7,"
     + container.escapeExpression(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : (container.nullContext || {}),{"name":"name","hash":{},"data":data}) : helper)))
     + "</div>\r\n        </td>\r\n        <td>\r\n            <div class=\"line\"></div>\r\n        </td>\r\n    </table>\r\n    <p>\r\n        Lorem ipsum dolor sit amet, consectetuer adipiscing elit.\r\n        Aenean commodo ligula eget dolor. Aenean massa. Cum socils\r\n        natoque penatibus et magnis dis parturient montes, nascetur\r\n        ridiculus mus. Donec quam felis, ultricies, pellentesque eu,\r\n        pretium quis, sem. Nulla consequat massa quis enim. Donec\r\n        pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim\r\n        justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam\r\n        dictum felis eu <b>pede mollis pretium. Integer tincidunt. Cras\r\n        dapibus. Vivamus elementum semper nisi. Aenean\r\n        vulputate eleifend tellus. Aenean leo ligula, porttitor eu,\r\n        consequat vitae, eleifend ac, enim. Aliquam lorem ante,\r\n        dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra\r\n        nulla ut metus varius laoreet. Quisque rutrum.</b>\r\n    </p>\r\n</div>";
 },"useData":true});
+
+/***/ }),
+/* 35 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__object_js__ = __webpack_require__(36);
+
+
+var mas = new Array();
+
+class World {
+    setField(width, height) {
+        for (var i = 0; i < width; i++) {
+            mas[i] = new Array();
+            for (var j = 0; j < height; j++) {
+                mas[i][j] = Object.create(__WEBPACK_IMPORTED_MODULE_0__object_js__["a" /* Piece */]);
+            }
+        }
+    }
+
+    setInitPopulation() {
+        mas[2][4].is_live = 1;
+        mas[3][4].is_live = 1;
+        mas[4][4].is_live = 1;
+    }
+
+    getField() {
+        return mas;
+    }
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = World;
+
+
+/***/ }),
+/* 36 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Piece; });
+var Piece = {
+    is_live: 0,
+    neighbor_count: 0
+};
+
+/***/ }),
+/* 37 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__size_js__ = __webpack_require__(38);
+
+
+class NeighborCounter {
+    constructor(field) {
+        this.field = field;
+    }
+
+    count(pos_x, pos_y) {
+        var field = this.field;
+        var count = 0;
+        for (var i = pos_x - 1; i <= pos_x + 1; i++) {
+            for (var j = pos_y - 1; j <= pos_y + 1; j++) {
+                var obj = field[i][j];
+                if (i === pos_x && j === pos_y) continue;
+                if (obj.is_live === 1) count++;
+            }
+        }
+        field[pos_x][pos_y].neighbor_count = count;
+    }
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = NeighborCounter;
+
+
+/***/ }),
+/* 38 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* unused harmony export WORLD_WIDTH */
+/* unused harmony export WORLD_HEIGHT */
+var WORLD_WIDTH = 10;
+var WORLD_HEIGHT = 10;
 
 /***/ })
 /******/ ]);
