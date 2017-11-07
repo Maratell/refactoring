@@ -1,2 +1,2 @@
-export var WORLD_WIDTH = 10;
-export var WORLD_HEIGHT = 10;
+export var WORLD_WIDTH = 25;
+export var WORLD_HEIGHT = 25;

@@ -1,27 +1,49 @@
 import {Piece} from "./object.js"
+import {WorldPainter} from "./worldPainter";
+import {Configurator} from "./Configurator";
+import {Starter} from "./Starter";
 
-var mas = new Array();
 
+export var World = function() {
+    var mas = new Array();  //private
+    var painter = new WorldPainter();
 
-export class World {
+    class World {
         setField(width, height) {
-            for (var i = 0; i < width; i++){
+            for (var i = 0; i < width; i++) {
                 mas[i] = new Array();
-                for (var j = 0; j < height; j++){
+                for (var j = 0; j < height; j++) {
                     mas[i][j] = Object.create(Piece);
                 }
             }
         }
 
         setInitPopulation() {
-            (mas[2][4]).is_live = 1;
-            (mas[3][4]).is_live = 1;
-            (mas[4][4]).is_live = 1;
+            var starter = new Starter();
+            starter.setInitPopulation(mas);
         }
 
-        getField () {
-                return mas;
+        getField() {
+            return mas;
         }
+
+        paintField() {
+            painter.paintField();
+            painter.indicate(mas);
+        }
+
+        start() {
+            var configurator = new Configurator(mas);
+
+            var startTimer = function() {
+                    configurator.update();  //update mas
+                    painter.indicate(mas);
+            }
+
+            var time = setInterval(startTimer, 1000);
+        }
+    }
+
+    return new World();
 }
-
 
