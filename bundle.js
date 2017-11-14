@@ -70,8 +70,14 @@
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return WORLD_WIDTH; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return WORLD_HEIGHT; });
-var WORLD_WIDTH = 25;
-var WORLD_HEIGHT = 25;
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return setSize; });
+var WORLD_WIDTH;
+var WORLD_HEIGHT;
+
+var setSize = function (width, height) {
+    WORLD_WIDTH = width;
+    WORLD_HEIGHT = height;
+};
 
 /***/ }),
 /* 1 */
@@ -110,20 +116,87 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__js_world_js__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__js_Starter__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__js_size__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__js_RandomMaker__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__js_worldPainter__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__js_addStyle__ = __webpack_require__(6);
 
 
 
+
+
+
+
+
+
+
+Object(__WEBPACK_IMPORTED_MODULE_5__js_addStyle__["a" /* addStyle */])('css/form.css');
+document.getElementById("start").disabled = true;
+document.getElementById("stop").disabled = true;
+
+var firstEntry = true;
+
+var painter = new __WEBPACK_IMPORTED_MODULE_4__js_worldPainter__["a" /* WorldPainter */]();
 
 var wr = new __WEBPACK_IMPORTED_MODULE_0__js_world_js__["a" /* World */]();
-wr.setField(__WEBPACK_IMPORTED_MODULE_2__js_size__["b" /* WORLD_WIDTH */], __WEBPACK_IMPORTED_MODULE_2__js_size__["a" /* WORLD_HEIGHT */]);
-wr.setInitPopulation();
-wr.paintField();
-wr.start();
 
+var start = function () {
+    document.getElementById("start").disabled = true;
+    document.getElementById("stop").disabled = false;
+    document.getElementById("start").style.borderColor = "white";
+    document.getElementById("stop").style.borderColor = "red";
 
+    if (firstEntry === true) {
+        wr.start();
+        firstEntry = false;
+    }
+};
 
-var starter = new __WEBPACK_IMPORTED_MODULE_1__js_Starter__["a" /* Starter */]();
-starter.setInitPopulation(wr.getField());
+var stop = function () {
+    document.getElementById("stop").disabled = true;
+    document.getElementById("start").disabled = false;
+    document.getElementById("stop").style.borderColor = "white";
+    document.getElementById("start").style.borderColor = "red";
+};
+
+var func = function () {
+    document.getElementById("width").disabled = true;
+    document.getElementById("height").disabled = true;
+    document.getElementById("start").disabled = false;
+    document.getElementById("start").style.borderColor = "red";
+    document.getElementById("paint").style.borderColor = "white";
+    document.getElementById("paint").disabled = true;
+
+    document.getElementById("help").style.opacity = "1";
+    document.getElementById("help").style.transition = "5s";
+    var width = document.getElementById("width").value;
+    var height = document.getElementById("height").value;
+    Object(__WEBPACK_IMPORTED_MODULE_2__js_size__["c" /* setSize */])(width, height);
+
+    wr.setField(__WEBPACK_IMPORTED_MODULE_2__js_size__["b" /* WORLD_WIDTH */], __WEBPACK_IMPORTED_MODULE_2__js_size__["a" /* WORLD_HEIGHT */]);
+    wr.paintField();
+
+    var checkBox = document.getElementById("checkBox");
+    if (checkBox.checked) {
+        var randomMaker = new __WEBPACK_IMPORTED_MODULE_3__js_RandomMaker__["a" /* RandomMaker */](wr.getField());
+        wr.applyGeneration(randomMaker.generate());
+    }
+
+    var elements = document.getElementsByTagName("td");
+    for (var i = 0; i < elements.length; i++) {
+        elements[i].onclick = function () {
+            var childId = this.id;
+            var parentId = this.parentElement.id;
+            var mas = wr.getField();
+
+            mas[childId][parentId].is_live = mas[childId][parentId].is_live === 1 ? 0 : 1;
+            wr.applyGeneration(mas);
+        };
+    }
+};
+
+document.getElementById("paint").onclick = func;
+document.getElementById("start").onclick = start;
+document.getElementById("stop").onclick = stop;
 
 /***/ }),
 /* 3 */
@@ -157,23 +230,31 @@ var World = function () {
         setInitPopulation() {
             var starter = new __WEBPACK_IMPORTED_MODULE_3__Starter__["a" /* Starter */]();
             starter.setInitPopulation(mas);
+            //painter.indicate(mas);
         }
 
         getField() {
             return mas;
         }
 
+        applyGeneration(game_field) {
+            mas = game_field;
+            painter.indicate(mas);
+        }
+
         paintField() {
             painter.paintField();
-            painter.indicate(mas);
+            //painter.indicate(mas);
         }
 
         start() {
             var configurator = new __WEBPACK_IMPORTED_MODULE_2__Configurator__["a" /* Configurator */](mas);
 
             var startTimer = function () {
-                configurator.update(); //update mas
-                painter.indicate(mas);
+                if (document.getElementById("stop").disabled === false) {
+                    configurator.update(); //update mas
+                    painter.indicate(mas);
+                }
             };
 
             var time = setInterval(startTimer, 1000);
@@ -209,6 +290,9 @@ var Piece = {
 
 var WorldPainter = function () {
     Object(__WEBPACK_IMPORTED_MODULE_1__addStyle__["a" /* addStyle */])('css/main.css');
+    Object(__WEBPACK_IMPORTED_MODULE_1__addStyle__["a" /* addStyle */])('css/active.css');
+    Object(__WEBPACK_IMPORTED_MODULE_1__addStyle__["a" /* addStyle */])('css/init_element_style.css');
+    Object(__WEBPACK_IMPORTED_MODULE_1__addStyle__["a" /* addStyle */])('css/disactive.css');
     var iter = new __WEBPACK_IMPORTED_MODULE_2__Iterator__["a" /* Iterator */]();
 
     class WorldPainter {
@@ -220,7 +304,7 @@ var WorldPainter = function () {
             for (var i = 0; i < __WEBPACK_IMPORTED_MODULE_0__size__["b" /* WORLD_WIDTH */]; i++) {
                 for (var j = 0; j < __WEBPACK_IMPORTED_MODULE_0__size__["a" /* WORLD_HEIGHT */]; j++) {
                     var elem = iter.getElem(i, j);
-                    if (mas[i][j].is_live === 1) elem.style.backgroundColor = "#4B0082";else elem.style.backgroundColor = "white";
+                    if (mas[i][j].is_live === 1) elem.style.backgroundColor = "#B8860B";else elem.style.backgroundColor = "white";
                 }
             }
         }
@@ -259,7 +343,7 @@ var Iterator = function () {
     var elems = document.getElementsByTagName('tr');
 
     var setRows = function () {
-        for (var i = 0; i < __WEBPACK_IMPORTED_MODULE_0__size__["b" /* WORLD_WIDTH */]; i++) {
+        for (var i = 0; i < __WEBPACK_IMPORTED_MODULE_0__size__["a" /* WORLD_HEIGHT */]; i++) {
             table.insertAdjacentHTML('beforeend', '<tr></tr>');
             elems[i].id = String(i);
             //console.log(elems[i]);
@@ -267,8 +351,8 @@ var Iterator = function () {
     };
 
     var setColumns = function () {
-        for (var i = 0; i < __WEBPACK_IMPORTED_MODULE_0__size__["b" /* WORLD_WIDTH */]; i++) {
-            for (var j = 0; j < __WEBPACK_IMPORTED_MODULE_0__size__["a" /* WORLD_HEIGHT */]; j++) {
+        for (var i = 0; i < __WEBPACK_IMPORTED_MODULE_0__size__["a" /* WORLD_HEIGHT */]; i++) {
+            for (var j = 0; j < __WEBPACK_IMPORTED_MODULE_0__size__["b" /* WORLD_WIDTH */]; j++) {
                 elems[i].insertAdjacentHTML('beforeend', '<td></td>');
                 var childs = elems[i].childNodes;
                 childs[j].id = String(j);
@@ -282,8 +366,8 @@ var Iterator = function () {
         }
 
         getElem(cur_x, cur_y) {
-            var childs = elems[cur_x].childNodes;
-            return childs[cur_y];
+            var childs = elems[cur_y].childNodes;
+            return childs[cur_x];
         }
     }
 
@@ -411,7 +495,7 @@ var BordersAdapter = function () {
                 right_border = __WEBPACK_IMPORTED_MODULE_0__size_js__["b" /* WORLD_WIDTH */] - 1;
                 bot_border = 0;
                 //alert("3");
-            } else if (pos_x === __WEBPACK_IMPORTED_MODULE_0__size_js__["a" /* WORLD_HEIGHT */] - 1 && pos_y === __WEBPACK_IMPORTED_MODULE_0__size_js__["b" /* WORLD_WIDTH */] - 1) {
+            } else if (pos_x === __WEBPACK_IMPORTED_MODULE_0__size_js__["b" /* WORLD_WIDTH */] - 1 && pos_y === __WEBPACK_IMPORTED_MODULE_0__size_js__["a" /* WORLD_HEIGHT */] - 1) {
                 right_border = __WEBPACK_IMPORTED_MODULE_0__size_js__["b" /* WORLD_WIDTH */] - 1;
                 top_border = __WEBPACK_IMPORTED_MODULE_0__size_js__["a" /* WORLD_HEIGHT */] - 1;
                 //alert("4");
@@ -463,6 +547,33 @@ var Randomizer = function () {
     }
 
     return new Randomizer();
+};
+
+/***/ }),
+/* 12 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RandomMaker; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Starter__ = __webpack_require__(1);
+
+
+var RandomMaker = function (filed) {
+    var game_field;
+    class RandomMaker {
+        constructor(filed) {
+            game_field = filed;
+        }
+
+        generate() {
+            var starter = new __WEBPACK_IMPORTED_MODULE_0__Starter__["a" /* Starter */]();
+            starter.setInitPopulation(game_field);
+            return game_field;
+        }
+
+    }
+
+    return new RandomMaker(filed);
 };
 
 /***/ })

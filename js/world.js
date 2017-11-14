@@ -21,23 +21,31 @@ export var World = function() {
         setInitPopulation() {
             var starter = new Starter();
             starter.setInitPopulation(mas);
+            //painter.indicate(mas);
         }
 
         getField() {
             return mas;
         }
 
+        applyGeneration(game_field) {
+            mas = game_field;
+            painter.indicate(mas);
+        }
+
         paintField() {
             painter.paintField();
-            painter.indicate(mas);
+            //painter.indicate(mas);
         }
 
         start() {
             var configurator = new Configurator(mas);
 
             var startTimer = function() {
+                if (document.getElementById("stop").disabled === false) {
                     configurator.update();  //update mas
                     painter.indicate(mas);
+                }
             }
 
             var time = setInterval(startTimer, 1000);

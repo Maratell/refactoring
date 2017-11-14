@@ -7,7 +7,7 @@ export var Iterator = function() {
 
 
     var setRows = function() {
-        for(var i = 0; i < WORLD_WIDTH; i++) {
+        for(var i = 0; i < WORLD_HEIGHT; i++) {
             table.insertAdjacentHTML('beforeend', '<tr></tr>');
             elems[i].id = String(i);
             //console.log(elems[i]);
@@ -15,8 +15,8 @@ export var Iterator = function() {
     }
 
     var setColumns = function() {
-        for(var i = 0; i < WORLD_WIDTH; i++) {
-            for (var j = 0; j < WORLD_HEIGHT; j++) {
+        for(var i = 0; i < WORLD_HEIGHT; i++) {
+            for (var j = 0; j < WORLD_WIDTH; j++) {
                 elems[i].insertAdjacentHTML('beforeend', '<td></td>');
                 var childs = elems[i].childNodes;
                 childs[j].id = String(j);
@@ -30,8 +30,8 @@ export var Iterator = function() {
         }
 
         getElem(cur_x, cur_y) {
-            var childs = elems[cur_x].childNodes;
-            return childs[cur_y];
+            var childs = elems[cur_y].childNodes;
+            return childs[cur_x];
         }
     }
 

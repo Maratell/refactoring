@@ -1,6 +1,5 @@
-@import "init_element_style.css";
 #game_field {
-    border-spacing: 0px;
+    border-spacing: 1px;
     margin: 0 auto;
     padding-top: 50px;
 }

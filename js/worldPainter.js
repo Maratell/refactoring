@@ -4,8 +4,10 @@ import {Iterator} from "./Iterator";
 
 export var WorldPainter = function() {
     addStyle('css/main.css');
+    addStyle('css/active.css');
+    addStyle('css/init_element_style.css');
+    addStyle('css/disactive.css');
     var iter = new Iterator();
-
 
 
     class WorldPainter {
@@ -18,7 +20,7 @@ export var WorldPainter = function() {
                 for (var j = 0; j < WORLD_HEIGHT; j++) {
                     var elem = iter.getElem(i, j);
                     if (mas[i][j].is_live === 1)
-                        elem.style.backgroundColor = "#4B0082";
+                        elem.style.backgroundColor = "#B8860B";
                     else
                         elem.style.backgroundColor = "white";
                 }

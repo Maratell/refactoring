@@ -29,7 +29,7 @@ export var BordersAdapter = function() {
                 right_border = WORLD_WIDTH - 1;
                 bot_border = 0;
                 //alert("3");
-            } else if ((pos_x === WORLD_HEIGHT - 1) && (pos_y === WORLD_WIDTH - 1)) {
+            } else if ((pos_x === WORLD_WIDTH - 1) && (pos_y === WORLD_HEIGHT - 1)) {
                 right_border = WORLD_WIDTH - 1;
                 top_border = WORLD_HEIGHT - 1;
                 //alert("4");
