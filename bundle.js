@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 2);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -81,6 +81,66 @@ var setSize = function (width, height) {
 
 /***/ }),
 /* 1 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return WorldPainter; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__size__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__addStyle__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Iterator__ = __webpack_require__(7);
+
+
+
+
+var WorldPainter = function () {
+    Object(__WEBPACK_IMPORTED_MODULE_1__addStyle__["a" /* addStyle */])('css/main.css');
+    Object(__WEBPACK_IMPORTED_MODULE_1__addStyle__["a" /* addStyle */])('css/active.css');
+    Object(__WEBPACK_IMPORTED_MODULE_1__addStyle__["a" /* addStyle */])('css/init_element_style.css');
+    Object(__WEBPACK_IMPORTED_MODULE_1__addStyle__["a" /* addStyle */])('css/disactive.css');
+    var iter = new __WEBPACK_IMPORTED_MODULE_2__Iterator__["a" /* Iterator */]();
+
+    class WorldPainter {
+        paintField() {
+            iter.setInit();
+        }
+
+        update(mas) {
+            for (var i = 0; i < __WEBPACK_IMPORTED_MODULE_0__size__["b" /* WORLD_WIDTH */]; i++) {
+                for (var j = 0; j < __WEBPACK_IMPORTED_MODULE_0__size__["a" /* WORLD_HEIGHT */]; j++) {
+                    var elem = iter.getElem(i, j);
+                    if (mas[i][j].is_live === 1) elem.style.backgroundColor = "#B8860B";else elem.style.backgroundColor = "white";
+                }
+            }
+        }
+
+        removeField() {
+            var table = document.getElementById('game_field');
+            while (table.lastChild) {
+                table.removeChild(table.lastChild);
+            }
+        }
+    }
+
+    return new WorldPainter();
+};
+
+/***/ }),
+/* 2 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return addStyle; });
+var addStyle = function (path) {
+    var tag_css = document.createElement('link');
+    tag_css.rel = 'stylesheet';
+    tag_css.href = path; // здесь указывается URL стилевого файла
+    tag_css.type = 'text/css';
+    var tag_head = document.getElementsByTagName('head');
+    tag_head[0].appendChild(tag_css);
+};
+
+/***/ }),
+/* 3 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -108,17 +168,21 @@ var Starter = function () {
 };
 
 /***/ }),
-/* 2 */
+/* 4 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__js_world_js__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__js_Starter__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__js_size__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__js_RandomMaker__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__js_worldPainter__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__js_addStyle__ = __webpack_require__(6);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "painter", function() { return painter; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "wr", function() { return wr; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "firstEntry", function() { return firstEntry; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__js_world_js__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__js_size__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__js_RandomMaker__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__js_worldPainter__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__js_addStyle__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__js_resetFocus__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__js_Controller__ = __webpack_require__(14);
 
 
 
@@ -129,85 +193,70 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
-Object(__WEBPACK_IMPORTED_MODULE_5__js_addStyle__["a" /* addStyle */])('css/form.css');
-document.getElementById("start").disabled = true;
-document.getElementById("stop").disabled = true;
+Object(__WEBPACK_IMPORTED_MODULE_4__js_addStyle__["a" /* addStyle */])('css/form.css');
+Object(__WEBPACK_IMPORTED_MODULE_5__js_resetFocus__["a" /* resetFocus */])("init");
 
+var painter = new __WEBPACK_IMPORTED_MODULE_3__js_worldPainter__["a" /* WorldPainter */]();
+var wr = new __WEBPACK_IMPORTED_MODULE_0__js_world_js__["a" /* World */]();
 var firstEntry = true;
 
-var painter = new __WEBPACK_IMPORTED_MODULE_4__js_worldPainter__["a" /* WorldPainter */]();
-
-var wr = new __WEBPACK_IMPORTED_MODULE_0__js_world_js__["a" /* World */]();
-
 var start = function () {
-    document.getElementById("start").disabled = true;
-    document.getElementById("stop").disabled = false;
-    document.getElementById("start").style.borderColor = "white";
-    document.getElementById("stop").style.borderColor = "red";
+    Object(__WEBPACK_IMPORTED_MODULE_5__js_resetFocus__["a" /* resetFocus */])("start");
 
     if (firstEntry === true) {
-        wr.start();
+        var startTimer = function () {
+            if (document.getElementById("stop").disabled === false) {
+                wr.update();
+                painter.update(wr.getField());
+            }
+        };
+        var time = setInterval(startTimer, 1000);
         firstEntry = false;
     }
 };
 
 var stop = function () {
-    document.getElementById("stop").disabled = true;
-    document.getElementById("start").disabled = false;
-    document.getElementById("stop").style.borderColor = "white";
-    document.getElementById("start").style.borderColor = "red";
+    Object(__WEBPACK_IMPORTED_MODULE_5__js_resetFocus__["a" /* resetFocus */])("stop");
 };
 
-var func = function () {
-    document.getElementById("width").disabled = true;
-    document.getElementById("height").disabled = true;
-    document.getElementById("start").disabled = false;
-    document.getElementById("start").style.borderColor = "red";
-    document.getElementById("paint").style.borderColor = "white";
-    document.getElementById("paint").disabled = true;
+var paintField = function () {
+    Object(__WEBPACK_IMPORTED_MODULE_5__js_resetFocus__["a" /* resetFocus */])("paint_field");
+    Object(__WEBPACK_IMPORTED_MODULE_1__js_size__["c" /* setSize */])(document.getElementById("width").value, document.getElementById("height").value);
 
-    document.getElementById("help").style.opacity = "1";
-    document.getElementById("help").style.transition = "5s";
-    var width = document.getElementById("width").value;
-    var height = document.getElementById("height").value;
-    Object(__WEBPACK_IMPORTED_MODULE_2__js_size__["c" /* setSize */])(width, height);
-
-    wr.setField(__WEBPACK_IMPORTED_MODULE_2__js_size__["b" /* WORLD_WIDTH */], __WEBPACK_IMPORTED_MODULE_2__js_size__["a" /* WORLD_HEIGHT */]);
-    wr.paintField();
+    wr.setField(__WEBPACK_IMPORTED_MODULE_1__js_size__["b" /* WORLD_WIDTH */], __WEBPACK_IMPORTED_MODULE_1__js_size__["a" /* WORLD_HEIGHT */]);
+    painter.paintField();
 
     var checkBox = document.getElementById("checkBox");
     if (checkBox.checked) {
-        var randomMaker = new __WEBPACK_IMPORTED_MODULE_3__js_RandomMaker__["a" /* RandomMaker */](wr.getField());
+        var randomMaker = new __WEBPACK_IMPORTED_MODULE_2__js_RandomMaker__["a" /* RandomMaker */](wr.getField());
         wr.applyGeneration(randomMaker.generate());
+        painter.update(wr.getField());
     }
 
-    var elements = document.getElementsByTagName("td");
-    for (var i = 0; i < elements.length; i++) {
-        elements[i].onclick = function () {
-            var childId = this.id;
-            var parentId = this.parentElement.id;
-            var mas = wr.getField();
-
-            mas[childId][parentId].is_live = mas[childId][parentId].is_live === 1 ? 0 : 1;
-            wr.applyGeneration(mas);
-        };
-    }
+    var controller = new __WEBPACK_IMPORTED_MODULE_6__js_Controller__["a" /* Controller */](wr, painter);
+    controller.listen(); //to listen the activation of elements
 };
 
-document.getElementById("paint").onclick = func;
+var refresh = function () {
+    Object(__WEBPACK_IMPORTED_MODULE_5__js_resetFocus__["a" /* resetFocus */])("init");
+    painter.removeField();
+};
+
+document.getElementById("paint").onclick = paintField;
 document.getElementById("start").onclick = start;
 document.getElementById("stop").onclick = stop;
+document.getElementById("refresh").onclick = refresh;
 
 /***/ }),
-/* 3 */
+/* 5 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return World; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__object_js__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__worldPainter__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__object_js__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__worldPainter__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Configurator__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Starter__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Starter__ = __webpack_require__(3);
 
 
 
@@ -215,7 +264,7 @@ document.getElementById("stop").onclick = stop;
 
 var World = function () {
     var mas = new Array(); //private
-    var painter = new __WEBPACK_IMPORTED_MODULE_1__worldPainter__["a" /* WorldPainter */]();
+    var configurator = new __WEBPACK_IMPORTED_MODULE_2__Configurator__["a" /* Configurator */](mas); //private
 
     class World {
         setField(width, height) {
@@ -230,7 +279,6 @@ var World = function () {
         setInitPopulation() {
             var starter = new __WEBPACK_IMPORTED_MODULE_3__Starter__["a" /* Starter */]();
             starter.setInitPopulation(mas);
-            //painter.indicate(mas);
         }
 
         getField() {
@@ -239,25 +287,10 @@ var World = function () {
 
         applyGeneration(game_field) {
             mas = game_field;
-            painter.indicate(mas);
         }
 
-        paintField() {
-            painter.paintField();
-            //painter.indicate(mas);
-        }
-
-        start() {
-            var configurator = new __WEBPACK_IMPORTED_MODULE_2__Configurator__["a" /* Configurator */](mas);
-
-            var startTimer = function () {
-                if (document.getElementById("stop").disabled === false) {
-                    configurator.update(); //update mas
-                    painter.indicate(mas);
-                }
-            };
-
-            var time = setInterval(startTimer, 1000);
+        update() {
+            configurator.update(); //update mas
         }
     }
 
@@ -265,7 +298,7 @@ var World = function () {
 };
 
 /***/ }),
-/* 4 */
+/* 6 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -273,59 +306,6 @@ var World = function () {
 var Piece = {
     is_live: 0,
     neighbor_count: 0
-};
-
-/***/ }),
-/* 5 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return WorldPainter; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__size__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__addStyle__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Iterator__ = __webpack_require__(7);
-
-
-
-
-var WorldPainter = function () {
-    Object(__WEBPACK_IMPORTED_MODULE_1__addStyle__["a" /* addStyle */])('css/main.css');
-    Object(__WEBPACK_IMPORTED_MODULE_1__addStyle__["a" /* addStyle */])('css/active.css');
-    Object(__WEBPACK_IMPORTED_MODULE_1__addStyle__["a" /* addStyle */])('css/init_element_style.css');
-    Object(__WEBPACK_IMPORTED_MODULE_1__addStyle__["a" /* addStyle */])('css/disactive.css');
-    var iter = new __WEBPACK_IMPORTED_MODULE_2__Iterator__["a" /* Iterator */]();
-
-    class WorldPainter {
-        paintField() {
-            iter.setInit();
-        }
-
-        indicate(mas) {
-            for (var i = 0; i < __WEBPACK_IMPORTED_MODULE_0__size__["b" /* WORLD_WIDTH */]; i++) {
-                for (var j = 0; j < __WEBPACK_IMPORTED_MODULE_0__size__["a" /* WORLD_HEIGHT */]; j++) {
-                    var elem = iter.getElem(i, j);
-                    if (mas[i][j].is_live === 1) elem.style.backgroundColor = "#B8860B";else elem.style.backgroundColor = "white";
-                }
-            }
-        }
-    }
-
-    return new WorldPainter();
-};
-
-/***/ }),
-/* 6 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return addStyle; });
-var addStyle = function (path) {
-    var tag_css = document.createElement('link');
-    tag_css.rel = 'stylesheet';
-    tag_css.href = path; // здесь указывается URL стилевого файла
-    tag_css.type = 'text/css';
-    var tag_head = document.getElementsByTagName('head');
-    tag_head[0].appendChild(tag_css);
 };
 
 /***/ }),
@@ -555,7 +535,7 @@ var Randomizer = function () {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RandomMaker; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Starter__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Starter__ = __webpack_require__(3);
 
 
 var RandomMaker = function (filed) {
@@ -574,6 +554,103 @@ var RandomMaker = function (filed) {
     }
 
     return new RandomMaker(filed);
+};
+
+/***/ }),
+/* 13 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return resetFocus; });
+var resetFocus = function (param) {
+
+    switch (param) {
+        case 'paint_field':
+            resetPaintField();
+            break;
+
+        case 'stop':
+            resetStop();
+            break;
+
+        case 'start':
+            resetStart();
+            break;
+
+        case 'init':
+            setInintInstance();
+            break;
+    }
+};
+
+var resetPaintField = function () {
+    document.getElementById("width").disabled = true;
+    document.getElementById("height").disabled = true;
+    document.getElementById("start").disabled = false;
+    document.getElementById("start").style.borderColor = "red";
+    document.getElementById("paint").style.borderColor = "white";
+    document.getElementById("paint").disabled = true;
+    document.getElementById("help").style.opacity = "1";
+    document.getElementById("help").style.transition = "5s";
+};
+
+var resetStop = function () {
+    document.getElementById("stop").disabled = true;
+    document.getElementById("start").disabled = false;
+    document.getElementById("stop").style.borderColor = "white";
+    document.getElementById("start").style.borderColor = "red";
+};
+
+var resetStart = function () {
+    document.getElementById("start").disabled = true;
+    document.getElementById("stop").disabled = false;
+    document.getElementById("start").style.borderColor = "white";
+    document.getElementById("stop").style.borderColor = "red";
+};
+
+var setInintInstance = function () {
+    document.getElementById("start").disabled = true;
+    document.getElementById("stop").disabled = true;
+    document.getElementById("paint").disabled = false;
+    document.getElementById("start").style.borderColor = "white";
+    document.getElementById("stop").style.borderColor = "white";
+    document.getElementById("paint").style.borderColor = "red";
+    document.getElementById("width").disabled = false;
+    document.getElementById("height").disabled = false;
+};
+
+/***/ }),
+/* 14 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Controller; });
+var Controller = function (wr, painter) {
+    var model, view;
+
+    class Controller {
+        constructor(wr, painter) {
+            model = wr;
+            view = painter;
+        }
+
+        listen() {
+            var elements = document.getElementsByTagName("td");
+            for (var i = 0; i < elements.length; i++) {
+                elements[i].onclick = function () {
+                    var childId = this.id;
+                    var parentId = this.parentElement.id;
+                    var mas = model.getField();
+
+                    mas[childId][parentId].is_live = mas[childId][parentId].is_live === 1 ? 0 : 1;
+                    model.applyGeneration(mas);
+                    view.update(model.getField());
+                };
+            }
+        }
+    }
+
+    return new Controller(wr, painter);
 };
 
 /***/ })

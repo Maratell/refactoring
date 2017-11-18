@@ -6,7 +6,7 @@ import {Starter} from "./Starter";
 
 export var World = function() {
     var mas = new Array();  //private
-    var painter = new WorldPainter();
+    var configurator = new Configurator(mas);  //private
 
     class World {
         setField(width, height) {
@@ -21,7 +21,6 @@ export var World = function() {
         setInitPopulation() {
             var starter = new Starter();
             starter.setInitPopulation(mas);
-            //painter.indicate(mas);
         }
 
         getField() {
@@ -30,25 +29,10 @@ export var World = function() {
 
         applyGeneration(game_field) {
             mas = game_field;
-            painter.indicate(mas);
         }
 
-        paintField() {
-            painter.paintField();
-            //painter.indicate(mas);
-        }
-
-        start() {
-            var configurator = new Configurator(mas);
-
-            var startTimer = function() {
-                if (document.getElementById("stop").disabled === false) {
-                    configurator.update();  //update mas
-                    painter.indicate(mas);
-                }
-            }
-
-            var time = setInterval(startTimer, 1000);
+        update() {
+            configurator.update();  //update mas
         }
     }
 

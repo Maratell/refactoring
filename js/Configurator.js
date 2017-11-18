@@ -29,10 +29,6 @@ export var Configurator = function(field) {
                     }
                 }
             }
-
-
-
-
         }
     }
 

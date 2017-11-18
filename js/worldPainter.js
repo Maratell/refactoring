@@ -9,13 +9,12 @@ export var WorldPainter = function() {
     addStyle('css/disactive.css');
     var iter = new Iterator();
 
-
     class WorldPainter {
         paintField() {
             iter.setInit();
         }
 
-        indicate(mas) {
+        update(mas) {
             for (var i = 0; i  < WORLD_WIDTH; i++) {
                 for (var j = 0; j < WORLD_HEIGHT; j++) {
                     var elem = iter.getElem(i, j);
@@ -24,6 +23,13 @@ export var WorldPainter = function() {
                     else
                         elem.style.backgroundColor = "white";
                 }
+            }
+        }
+
+        removeField() {
+            var table = document.getElementById('game_field');
+            while (table.lastChild) {
+                table.removeChild(table.lastChild);
             }
         }
     }
